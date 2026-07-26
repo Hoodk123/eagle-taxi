@@ -1,0 +1,113 @@
+---
+// src/components/cta.astro
+// Pure .astro — no client hydration needed. Uses shadcn tokens so it stays
+// consistent with the rest of the page.
+---
+
+<section
+  id="book"
+  class="py-20 md:py-32 bg-transparent scroll-mt-24"
+  aria-labelledby="cta-title"
+>
+  <div class="mx-auto max-w-5xl px-6">
+    <div
+      class="relative overflow-hidden rounded-3xl border border-border bg-card/40 backdrop-blur-sm px-6 py-12 sm:px-12 sm:py-16 md:px-16 md:py-20"
+    >
+      <!-- Soft radial glow using shadcn tokens, no hardcoded palette -->
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-[36rem] rounded-full blur-3xl bg-primary/10"
+      >
+      </div>
+
+      <div class="relative flex flex-col items-center text-center gap-6">
+        <span
+          class="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground"
+        >
+          <svg
+            class="size-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="18" cy="18" r="3"></circle>
+            <path d="M6 9v6a3 3 0 0 0 3 3h6"></path>
+          </svg>
+          Book Now
+        </span>
+
+        <h2
+          id="cta-title"
+          class="text-3xl md:text-5xl font-medium tracking-tight max-w-2xl"
+        >
+          Book Your Ride Today!
+        </h2>
+
+        <p class="text-base md:text-lg text-muted-foreground max-w-xl">
+          Comfort · Safety · On Time — Every Time
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 mt-2">
+          <!-- Primary: Call or WhatsApp, opens WhatsApp click-to-chat -->
+          <a
+            href="https://wa.me/250798086791?text=Hello%20Eagle%20Taxi%2C%20I%20would%20like%20to%20book%20a%20ride"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/85 transition-colors px-6 h-12 text-sm font-medium cursor-pointer shadow-sm"
+          >
+            <!-- WhatsApp brand glyph -->
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+              class="size-5"
+            >
+              <path
+                d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.888 9.884a9.86 9.86 0 0 0 1.669 5.521l-.999 3.648 3.738-.978zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
+              ></path>
+            </svg>
+            <span>Call or WhatsApp: 0798 086 791</span>
+          </a>
+
+          <!-- Secondary: View Routes & Pricing (same-page jump) -->
+          <a
+            href="#pricing"
+            class="group inline-flex items-center gap-2 rounded-full border border-border bg-transparent text-foreground hover:bg-muted transition-colors px-6 h-12 text-sm font-medium cursor-pointer"
+          >
+            <span>View Routes & Pricing</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              class="size-4 transition-transform duration-300 group-hover:translate-x-0.5"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Trust row -->
+        <p
+          class="text-xs md:text-sm text-muted-foreground/80 mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1"
+        >
+          <span>Call/WhatsApp 0798 086 791</span>
+          <span aria-hidden="true" class="text-muted-foreground/50">·</span>
+          <span>24/7 Service Available</span>
+          <span aria-hidden="true" class="text-muted-foreground/50">·</span>
+          <span>Based in Huye</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

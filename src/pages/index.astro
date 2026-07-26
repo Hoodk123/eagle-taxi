@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// src/pages/index.astro
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import HeaderSpace from '../components/shadcn-space/blocks/hero-01/header.tsx';
+import HeroSpace from '../components/shadcn-space/blocks/hero-01/hero.tsx';
+import FeaturesSection from '../components/features-8.tsx';
+import VehiclesSection from '../components/vehicles-section.tsx';
+import CarBrandsStrip from '../components/car-brands-strip.tsx';
+import StatsStack from '../components/stats-stack.tsx';
+import PricingSection from '../components/pricing-section.tsx';
+import CTA from '../components/cta.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const navigationData = [
+  { title: 'Experience', href: '#experience', isActive: true },
+  { title: 'Fleet', href: '#fleet' },
+  { title: 'Safety', href: '#safety' },
+  { title: 'Pricing', href: '#pricing' },
+  { title: 'Book', href: '#book' },
+  { title: 'About', href: '#about' },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Eagle Taxi — Premium Travel in Rwanda"
+  description="Premium travel in Rwanda with bold design and trusted service."
+>
+  <HeaderSpace client:load navigationData={navigationData} />
+  <main>
+    <HeroSpace client:load />
+    <FeaturesSection client:visible />
+    <VehiclesSection client:load />
+    <CarBrandsStrip client:visible />
+    <StatsStack client:load />
+    <PricingSection client:load />
+    <CTA />
+  </main>
 </Layout>

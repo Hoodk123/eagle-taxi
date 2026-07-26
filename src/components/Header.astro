@@ -1,0 +1,124 @@
+---
+// src/components/Header.astro
+---
+
+<header class="header-container">
+  <nav class="glass-nav">
+    <!-- Brand / Logo -->
+    <a href="/" class="logo">
+      <span class="logo-mark">⚡</span>
+      <span class="logo-text">EAGLE TAXI</span>
+    </a>
+
+    <!-- Nav Links -->
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#fleet">Fleet</a></li>
+      <li><a href="#safety">Safety</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+
+    <!-- Primary CTA -->
+    <a href="#book" class="cta-button">
+      <span>Book Journey</span>
+      <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<style>
+  .header-container {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    padding: 0 1.5rem;
+  }
+
+  .glass-nav {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* Pill shape */
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .logo-mark {
+    color: #fbbf24; /* Accent gold */
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: #ffffff;
+  }
+
+  .cta-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: #0f172a;
+    padding: 0.6rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-1px);
+    background: #f1f5f9;
+  }
+
+  .cta-button:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  .arrow {
+    transition: transform 0.2s ease;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none; /* We can add mobile drawer toggle next */
+    }
+  }
+</style>
