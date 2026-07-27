@@ -24,4 +24,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-public
+# Locally hosted fleet / brand assets — these are served from cloud storage
+# at runtime, so we don't keep the source files in git. Add new public/
+# assets (favicons, robots.txt, manifests, etc.) outside these two folders
+# and they will be tracked normally.
+public/cars/
+public/car-logos/

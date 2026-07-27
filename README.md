@@ -31,7 +31,7 @@ business already uses offline (Safe · Reliable · Comfortable).
 | Styling          | **Tailwind CSS 4** (`@tailwindcss/vite`) | Utility-first styling, dark mode via the `dark` class, theme tokens via CSS variables.                      |
 | Animation        | **Motion** (`motion/react`) + **GSAP** | `whileInView` reveal in the hero and brand strip; GSAP reserved for scroll-driven work.                      |
 | Carousel         | **Embla** (`embla-carousel-react` + `embla-carousel-autoplay`) | Lightweight, accessible carousel powering the fleet section.                                  |
-| Icons            | **lucide-react**, **@hugeicons/react**, **@iconify/react**, **@fontsource** | Lucide for the bento feature tiles; the others are available where a glyph is needed; fonts self-hosted. |
+| Icons            | **lucide-react**, **@hugeicons/react**, **@iconify/react**, **@fontsource** | Lucide for the bento feature tiles; hugeicons/iconify where the shadcn primitives need them; fonts self-hosted via `@fontsource`. |
 | Utilities        | `clsx`, `tailwind-merge`               | Compose conditional classes safely (see `src/lib/utils.ts`).                                                 |
 
 > Node ≥ 22.12.0 is required (`engines.node` in `package.json`).
@@ -41,31 +41,34 @@ business already uses offline (Safe · Reliable · Comfortable).
 ```text
 /
 ├── public/
-│   ├── cars/            # Fleet photos, one car per file (sedans / suvs / vans)
-│   ├── car-logos/       # Brand logos for the moving "Brands we drive" marquee
+│   ├── cars/            # Fleet photos — gitignored (served from cloud storage)
+│   ├── car-logos/       # Brand logos — gitignored (served from cloud storage)
 │   ├── favicon.svg
 │   └── favicon.ico
 ├── src/
 │   ├── assets/
+│   │   └── logo/logo.tsx                  # Eagle Taxi wordmark placeholder used by the header
 │   ├── components/
 │   │   ├── shadcn-space/
-│   │   │   ├── animations/marquee.tsx        # CSS-only infinite marquee (logos strip)
-│   │   │   └── blocks/hero-01/              # Header, hero, (original brand slider)
-│   │   ├── ui/                              # shadcn primitives (carousel, button, card…)
-│   │   ├── Header.astro
-│   │   ├── Hero.astro
-│   │   ├── features-8.tsx                   # "Why you should choose us" bento grid
-│   │   ├── vehicles-section.tsx             # Fleet carousel — car-by-car
-│   │   ├── car-brands-strip.tsx              # "Brands we drive" marquee of logos
+│   │   │   ├── animations/marquee.tsx      # CSS-only infinite marquee (used by the brands strip)
+│   │   │   └── blocks/hero-01/             # Header + hero (Reactive UI islands)
+│   │   ├── ui/                             # shadcn primitives (button, card, carousel, sheet, navigation-menu)
+│   │   ├── features-8.tsx                  # "Why you should choose us" bento grid
+│   │   ├── vehicles-section.tsx            # Fleet carousel — car-by-car
+│   │   ├── car-brands-strip.tsx            # "Brands we drive" marquee of logos
 │   │   ├── stats-stack.tsx
-│   │   ├── pricing-section.tsx
+│   │   ├── pricing-section.tsx             # Uses OptionWheel for option selection
+│   │   ├── OptionWheel.tsx                 # Curved scrolling wheel used by pricing
 │   │   └── cta.astro
-│   ├── layouts/Layout.astro                 # Root HTML shell, sets dark mode + global CSS
-│   ├── lib/utils.ts                         # `cn()` helper
-│   ├── pages/index.astro                    # Single page composition
-│   └── styles/global.css                    # Tailwind tokens, fonts, base styles
-├── astro.config.mjs                         # React + Tailwind vite plugin wiring
-├── tsconfig.json                            # TS config incl. path alias `@/*`
+│   ├── layouts/Layout.astro                # Root HTML shell, sets dark mode + global CSS
+│   ├── lib/utils.ts                        # `cn()` helper
+│   ├── pages/index.astro                   # Single page composition
+│   └── styles/global.css                   # Tailwind tokens, fonts, base styles
+├── .gitignore                              # Ignores dist, node_modules, .astro/, .vscode/, .idea/, env files, public/cars/, public/car-logos/
+├── astro.config.mjs                        # React + Tailwind vite plugin wiring
+├── components.json                         # shadcn registry config (style "base-maia")
+├── tsconfig.json                           # TS config incl. path alias `@/*`
+├── AGENTS.md                               # Engineering rules + Astro docs links
 └── package.json
 ```
 
@@ -100,6 +103,19 @@ To add a new car:
    ```
 
 The carousel loop picks it up automatically — no other wiring is needed.
+
+## Asset hosting
+
+Fleet photos (`public/cars/`) and brand logos (`public/car-logos/`) are **not committed** —
+they are gitignored and will be served from cloud storage. The site references them by
+absolute path (`/cars/foo-sedan.jpg`, `/car-logos/kia-logo.png`) so swapping the local
+files for hosted URLs later is a one-line change in the component's data array:
+
+```ts
+image: "https://cdn.example.com/cars/mazda-sedan.jpg",
+```
+
+Other `public/` files (favicons, `robots.txt`, manifests, etc.) are tracked normally.
 
 ## Commands
 
