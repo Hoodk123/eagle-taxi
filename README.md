@@ -149,4 +149,7 @@ astro dev stop
 
 ## License
 
-[Project source is public but it is a non-commercial to anyone. All Eagle Taxi branding, routes and pricing belong to the business.](https://polyformproject.org/licenses/noncommercial/1.0.0/)
+Licensed under [PolyForm Noncommercial 1.0.0](./LICENSE).
+Copyright Eagle Taxi / Kevin Shyaka. Free for personal, educational,
+and noncommercial use. Commercial use requires a separate license —
+contact kevinshyaka27@gmail.com to discuss.
