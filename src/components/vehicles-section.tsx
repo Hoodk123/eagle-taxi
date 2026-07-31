@@ -34,18 +34,18 @@ type VehiclesSectionProps = {
 // Add a file in /public/cars and an entry here; the carousel scales for free.
 const DEFAULT_VEHICLES: VehicleCard[] = [
   // --- Sedans ---
-  { name: "Toyota Sedan", description: "Smooth, comfortable city ride.", image: "/cars/toyota-sedan.jpg", category: "Sedan" },
-  { name: "Hyundai Sedan", description: "Reliable and efficient for everyday trips.", image: "/cars/hyundai-sedan.jpg", category: "Sedan" },
-  { name: "BYD Sedan", description: "Modern electric comfort, quiet and clean.", image: "/cars/byd-sedan.jpg", category: "Sedan" },
-  { name: "Kia Sedan", description: "Spacious sedan for business and family.", image: "/cars/kia-sedan.jpg", category: "Sedan" },
+  { name: "Toyota Sedan", description: "Smooth, comfortable city ride.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/toyota-sedan_kljgwy.jpg", category: "Sedan" },
+  { name: "Hyundai Sedan", description: "Reliable and efficient for everyday trips.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/hyundai-sedan_danjwm.jpg", category: "Sedan" },
+  { name: "BYD Sedan", description: "Modern electric comfort, quiet and clean.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/byd-sedan_xm5vb6.jpg", category: "Sedan" },
+  { name: "Kia Sedan", description: "Spacious sedan for business and family.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/kia-sedan_vokvmd.jpg", category: "Sedan" },
   // --- SUVs ---
-  { name: "Mercedes-AMG SUV", description: "Premium performance and presence.", image: "/cars/amg-suv.jpg", category: "SUV" },
-  { name: "BMW SUV", description: "Sporty, refined, ready for the long road.", image: "/cars/bmw-suv.jpg", category: "SUV" },
-  { name: "Kia Sportage SUV", description: "Versatile 4x4 for city and safari.", image: "/cars/kia-suv.jpg", category: "SUV" },
-  { name: "Kia SUV", description: "Spacious 4x4 for group trips.", image: "/cars/kia-1-suv.jpg", category: "SUV" },
+  { name: "Mercedes-AMG SUV", description: "Premium performance and presence.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/amg-suv_dkpir1.jpg", category: "SUV" },
+  { name: "BMW SUV", description: "Sporty, refined, ready for the long road.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/bmw-suv_pcleyl.jpg", category: "SUV" },
+  { name: "Kia Sportage SUV", description: "Versatile 4x4 for city and safari.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/kia-1-suv_mkz9wt.jpg", category: "SUV" },
+  { name: "Kia SUV", description: "Spacious 4x4 for group trips.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/kia-suv_yjuwhz.jpg", category: "SUV" },
   // --- Vans ---
-  { name: "Volkswagen ID. Buzz", description: "Electric van with retro charm and room for all.", image: "/cars/id-buzz-van.png", category: "Van" },
-  { name: "Volkswagen Van", description: "Room for the whole family and luggage.", image: "/cars/vw-van.jpg", category: "Van" },
+  { name: "Volkswagen ID. Buzz", description: "Electric van with retro charm and room for all.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/id-buzz-van_kcjtb9.png", category: "Van" },
+  { name: "Volkswagen Van", description: "Room for the whole family and luggage.", image: "https://res.cloudinary.com/dz4fsirbc/image/upload/vw-van_tihmgk.jpg", category: "Van" },
 ];
 
 const OPTIONS: EmblaOptionsType = { loop: true, align: "center" };
@@ -79,7 +79,7 @@ function VehiclesSection({ vehicles = DEFAULT_VEHICLES }: VehiclesSectionProps) 
         </div>
 
         <div className="relative">
-          <Carousel options={OPTIONS} plugins={[AUTOPLAY]} className="w-full">
+        <Carousel opts={OPTIONS} plugins={[AUTOPLAY]} className="w-full">
             <CarouselContent className="-ml-2 sm:-ml-4">
               {vehicles.map((vehicle, index) => (
                 <CarouselItem

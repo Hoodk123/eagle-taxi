@@ -5,10 +5,10 @@ import { Marquee } from "@/components/shadcn-space/animations/marquee";
 // Car brand logos live in /public/car-logos. Add a file there and append
 // the entry here — the marquee will pick it up automatically.
 const BRANDS: { image: string; name: string }[] = [
-  { image: "/car-logos/kia-logo.png", name: "Kia" },
-  { image: "/car-logos/toyota-logo.png", name: "Toyota" },
-  { image: "/car-logos/volkswagen-logo.png", name: "Volkswagen" },
-  { image: "/car-logos/land-rover-logo.png", name: "Land Rover" },
+  { image: "https://res.cloudinary.com/dz4fsirbc/image/upload/kia-logo_osrbvc.png", name: "Kia" },
+  { image: "https://res.cloudinary.com/dz4fsirbc/image/upload/toyota-logo_wkojrv.png", name: "Toyota" },
+  { image: "https://res.cloudinary.com/dz4fsirbc/image/upload/volkswagen-logo_n1copj.png", name: "Volkswagen" },
+  { image: "https://res.cloudinary.com/dz4fsirbc/image/upload/land-rover-logo_ck4i7d.png", name: "Land Rover" },
 ];
 
 export default function CarBrandsStrip() {
