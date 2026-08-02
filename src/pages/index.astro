@@ -9,6 +9,7 @@ import CarBrandsStrip from '../components/car-brands-strip.tsx';
 import StatsStack from '../components/stats-stack.tsx';
 import PricingSection from '../components/pricing-section.tsx';
 import CTA from '../components/cta.astro';
+import BookingDrawer from '../components/booking/booking-drawer.tsx';
 
 const navigationData = [
   { title: 'Experience', href: '#experience', isActive: true },
@@ -34,4 +35,5 @@ const navigationData = [
     <PricingSection client:load />
     <CTA />
   </main>
+  <BookingDrawer client:load />
 </Layout>
