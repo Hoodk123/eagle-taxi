@@ -20,13 +20,24 @@ export type NavigationSection = {
 type HeaderProps = {
   navigationData: NavigationSection[];
   className?: string;
+  /**
+   * Called when the user clicks "Book a Ride". Lifted up so the parent page
+   * can open the booking drawer. Falls back to the WhatsApp deep link if no
+   * callback is provided (preserves original behaviour).
+   */
+  onBookRide?: () => void;
 };
 
-const CollaborateButton = ({ className }: { className?: string }) => (
-  <a
-    href="https://wa.me/250798086791?text=Hello%20Eagle%20Taxi%2C%20I%20would%20like%20to%20book%20a%20ride"
-    target="_blank"
-    rel="noopener noreferrer"
+const CollaborateButton = ({
+  className,
+  onClick,
+}: {
+  className?: string;
+  onClick?: () => void;
+}) => (
+  <button
+    type="button"
+    onClick={onClick}
     className={cn(
       "relative text-sm font-medium rounded-full h-10 p-1 ps-4 pe-12 group transition-all duration-500 hover:ps-12 hover:pe-4 w-fit overflow-hidden cursor-pointer",
       "inline-flex items-center bg-primary text-primary-foreground hover:bg-primary/85 border border-transparent",
@@ -39,12 +50,22 @@ const CollaborateButton = ({ className }: { className?: string }) => (
     <span className="absolute right-1 w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-all duration-500 group-hover:right-[calc(100%-36px)] group-hover:rotate-45">
       <ArrowUpRight size={16} />
     </span>
-  </a>
+  </button>
 );
 
-const Header = ({ navigationData, className }: HeaderProps) => {
+const Header = ({ navigationData, className, onBookRide }: HeaderProps) => {
   const [sticky, setSticky] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  // Default behaviour if no onBookRide callback is provided: open the
+  // booking drawer by dispatching a global CustomEvent that BookingDrawer
+  // listens for. Lets the drawer and header stay separate Astro islands.
+  const triggerBooking = () => {
+    if (onBookRide) onBookRide();
+    else if (typeof document !== "undefined") {
+      document.dispatchEvent(new CustomEvent("eagle:open-booking"));
+    }
+  };
 
   const handleScroll = useCallback(() => {
     setSticky(window.scrollY >= 50);
@@ -53,6 +74,13 @@ const Header = ({ navigationData, className }: HeaderProps) => {
   const handleResize = useCallback(() => {
     if (window.innerWidth >= 768) setIsOpen(false);
   }, []);
+
+  // Opening the drawer from the mobile menu should close the sheet first so
+  // the drawer is the only overlay on screen.
+  const openBookingFromMobile = () => {
+    setIsOpen(false);
+    triggerBooking();
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -110,7 +138,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
 
         {/* Desktop CTA */}
         <div className="flex gap-4">
-          <CollaborateButton className="hidden lg:flex" />
+          <CollaborateButton className="hidden lg:flex" onClick={triggerBooking} />
 
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -175,7 +203,7 @@ const Header = ({ navigationData, className }: HeaderProps) => {
                     </NavigationMenu>
 
                     <div className="w-fit">
-                      <CollaborateButton />
+                      <CollaborateButton onClick={openBookingFromMobile} />
                     </div>
                   </div>
 
